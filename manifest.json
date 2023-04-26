@@ -1,0 +1,16 @@
+{
+  "name": "LinkedIn spam blocker",
+  "action": {
+    "default_popup" : "popup.html"
+  },
+  "manifest_version": 3,
+  "version": "0.1",
+  "description": "Blocks spam companies from job search results",
+  "permissions": ["activeTab", "scripting", "tabs", "storage"],
+  "background": {
+    "service_worker": "background.js"
+  }
+  // "content_scripts": [{
+  //   "matches": ["*://*.example.com/*", "<all_urls>"]
+  // }]
+}
