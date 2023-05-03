@@ -10,7 +10,4 @@
   "background": {
     "service_worker": "background.js"
   }
-  // "content_scripts": [{
-  //   "matches": ["*://*.example.com/*", "<all_urls>"]
-  // }]
 }

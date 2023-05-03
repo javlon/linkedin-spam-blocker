@@ -11,12 +11,12 @@ buttonApplyHd.addEventListener("click", (async () => {
 
 buttonAdd = document.getElementById("addbtn")
 buttonAdd.addEventListener("click", (async () => {
-    var companyLogoId = document.getElementById("textfld");
-    if(companyLogoId.value != ""){
-        const response = await chrome.runtime.sendMessage({action: "add", companyLogoId: companyLogoId.value.trim()});
+    var companyName = document.getElementById("textfld");
+    if(companyName.value != ""){
+        const response = await chrome.runtime.sendMessage({action: "add", companyName: companyName.value.trim()});
         console.log(response)
         if(response.status){
-            companyLogoId.value = "";
+            companyName.value = "";
         }
     }
   }));
@@ -29,10 +29,10 @@ buttonAddCrnt.addEventListener("click", (async () => {
   
 
 
-function addElement(companyLogoId) {
+function addElement(companyName) {
     var ul = document.getElementById("SClist");
     var li = document.createElement("li");
-    li.appendChild(document.createTextNode(companyLogoId));
+    li.appendChild(document.createTextNode(companyName));
     ul.appendChild(li);
 }
 
@@ -41,9 +41,9 @@ function displayCompaniesList(complaniesList){
     var myNode = document.getElementById("spamCompaniesId");
     myNode.innerHTML = "";
     var ul = document.createElement("ul");
-    for(const companyLogoId of complaniesList){
+    for(const companyName of complaniesList){
         var li = document.createElement("li");
-        li.appendChild(document.createTextNode(companyLogoId));
+        li.appendChild(document.createTextNode(companyName));
         ul.appendChild(li);
     }
     myNode.appendChild(ul)

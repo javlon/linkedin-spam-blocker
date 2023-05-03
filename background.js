@@ -8,16 +8,12 @@ function applySpammers(spamCompanies, actiontype) {
   var nodes = search_results.childNodes;
   for (var i = 0; i < nodes.length; i++) {
     if (nodes[i].nodeName.toLowerCase() == 'li') {
-      var imgs = nodes[i].getElementsByTagName("img");
-      if(imgs.length == 0){
+      var companyDescription = nodes[i].getElementsByClassName("job-card-container__primary-description");
+      if(companyDescription.length == 0){
         continue;
       }
-      var imgtag = imgs[0];
-      if(!imgtag.hasAttribute("alt")){
-        console.log(nodes[i]);
-      }
-      imgtag = imgtag.alt.trim();
-      if (spamCompanies.has(imgtag.substring(0, imgtag.length - 5).trim())) {
+      var companyName = companyDescription[0].innerText.trim();
+      if (spamCompanies.has(companyName)) {
         if(actiontype == "color"){
           nodes[i].style.background = '#333333';
         }else if(actiontype == "hide"){
@@ -88,9 +84,7 @@ chrome.runtime.onMessage.addListener(
       });
       sendResponse({ status: "Done!" });
     } else if (request.action === "add") {
-      console.log("I'm in add")
-      console.log(request.companyLogoId)
-      addCompanyToStorage(request.companyLogoId)
+      addCompanyToStorage(request.companyName)
       sendResponse({status: true, text: "Company added to block list!"});
     } else if(request.action === "addCurrent"){
       chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
@@ -102,31 +96,3 @@ chrome.runtime.onMessage.addListener(
     }
   }
 );
-
-
-// var black_list_companies = new Set([
-  //   "Belmont Lavan", 
-  //   "PASQAL", 
-  //   "Jobs for Humanity", 
-  //   "Magno IT Recruitment", 
-  //   "SpenglerFox", 
-  //   "TST Poland Sp Z o o",
-  //   "Opus Recruitment Solutions",
-  //   "Harnham",
-  //   "Tribe28",
-  //   "Cititec",
-  //   "Amicus",
-  //   "Hamlyn Williams",
-  //   "Spectrum Search",
-  //   "Signify Technology",
-  //   "JBAndrews",
-  //   "European Recruitment",
-  //   "g2 Recruitment",
-  //   "Luke Recruitment",
-  //   "HUMANCAPiTAL BV",
-  //   "That Recruitment Company",
-  //   "LT Harper - Cyber Security Recruitment",
-  //   "Parallel Consulting",
-  //   "TradingHub",
-  //   "GCS Financial Services"
-  // ])
