@@ -1,0 +1,12 @@
+body {
+  font-family: sans-serif;
+  background: #dde1e7;
+  min-height: 80vh;
+  min-width: 320px;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  padding: 2px 4px;
+}

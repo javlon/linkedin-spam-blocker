@@ -1,18 +1,22 @@
 <html>
 
 <head>
-  <!-- <link rel="stylesheet" href="popup.css" /> -->
+  <link rel="stylesheet" href="popup.css" />
 </head>
 
 <body>
-  <button id="applybtnclr">Apply Color</button>
-  <button id="applybtnhd">Apply Hide</button><br>
-  <button id="addbtncrnt">Add company currently in focus</button><br>
-
-  <label for="textfld">Company name:</label><br>
-  <input type="text" id="textfld"></input>
-  <button id="addbtn">Add</button>
-  <button id="deletebtn">Delete</button>
+  <div class="center">
+  <button id="applybtnclr" class="button">Apply Color</button>
+  <button id="applybtnhd" class="button">Apply Hide</button><br>
+</div>
+<div class="center">
+  <button id="addbtncrnt" class="button">Add company currently in focus</button><br>
+</div>
+<div class="center">
+  <input type="text" id="textfld" placeholder="Company name"></input>
+  <button id="addbtn" class="button">Add</button>
+  <button id="deletebtn" class="button">Delete</button>
+</div>
   <h4>Spam Companies</h4>
   <div id="spamCompaniesId"></div>
 </body>
