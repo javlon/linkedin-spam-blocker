@@ -21,6 +21,19 @@ buttonAdd.addEventListener("click", (async () => {
   }
 }));
 
+buttonDelete = document.getElementById("deletebtn")
+buttonDelete.addEventListener("click", (async () => {
+  var companyName = document.getElementById("textfld");
+  if (companyName.value != "") {
+    const response = await chrome.runtime.sendMessage({ action: "delete", companyName: companyName.value.trim() });
+    console.log(response)
+    if (response.status) {
+      companyName.value = "";
+    }
+  }
+}));
+
+
 buttonAddCrnt = document.getElementById("addbtncrnt")
 buttonAddCrnt.addEventListener("click", (async () => {
   const response = await chrome.runtime.sendMessage({ action: "addCurrent" });

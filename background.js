@@ -40,6 +40,23 @@ function addCompanyToStorage(companyName) {
 }
 
 
+function deleteCompanyFromStorage(companyName) {
+  console.log("Removing company name: ", companyName)
+  chrome.storage.local.get(['spamCompanies'], async function (result) {
+    let spamCompanies = result.spamCompanies;
+    if (spamCompanies === undefined) {
+      spamCompanies = [];
+    }
+    if (spamCompanies.includes(companyName)) {
+      spamCompanies = spamCompanies.filter(e => e !== companyName);
+      // spamCompanies.splice(spamCompanies.indexof(companyName), 1)
+      // spamCompanies.push(companyName);
+      chrome.storage.local.set({ spamCompanies: spamCompanies }, function () { });
+    }
+  })
+}
+
+
 function addCurrentCompany() {
   var companyName = document.getElementsByClassName("jobs-unified-top-card__company-name")[0].getElementsByTagName("a")[0].innerText
   // addCompanyToStorage(companyName)
@@ -83,6 +100,9 @@ chrome.runtime.onMessage.addListener(
     } else if (request.action === "add") {
       addCompanyToStorage(request.companyName);
       sendResponse({ status: true, text: "Company added to block list!" });
+    } else if (request.action === "delete") {
+      deleteCompanyFromStorage(request.companyName);
+      sendResponse({ status: true, text: "Company deleted from block list!" });
     } else if (request.action === "addCurrent") {
       chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
         chrome.scripting.executeScript({
