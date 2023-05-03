@@ -24,7 +24,7 @@ buttonAdd.addEventListener("click", (async () => {
 buttonAddCrnt = document.getElementById("addbtncrnt")
 buttonAddCrnt.addEventListener("click", (async () => {
     const response = await chrome.runtime.sendMessage({action: "addCurrent"});
-    console.log(response)
+    console.log(response);
 }));
   
 
@@ -53,23 +53,23 @@ function displayCompaniesList(complaniesList){
 chrome.storage.onChanged.addListener((changes, namespace) => {
     for (let [key, { oldValue, newValue }] of Object.entries(changes)) {
       if(key == "spamCompanies"){
-        displayCompaniesList(newValue)
+        displayCompaniesList(newValue);
       }
     }
   });
 
 function initDsiplayCompanies(){
     chrome.storage.local.get(['spamCompanies'], async function (result) {
-        let spamCompanies = result.spamCompanies
+        let spamCompanies = result.spamCompanies;
         if (spamCompanies === undefined) {
-          spamCompanies = []
+          spamCompanies = [];
         }
-        displayCompaniesList(spamCompanies)
+        displayCompaniesList(spamCompanies);
       })
 }
 
   document.addEventListener('DOMContentLoaded', function () {
-    initDsiplayCompanies()
+    initDsiplayCompanies();
   });
 
 
