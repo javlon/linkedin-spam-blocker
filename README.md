@@ -3,7 +3,7 @@ LinkedIn does not have a feature to block companies from job search results. Thi
 
 # Installation Instructions
 1. Clone or download this repository
-2. In chrome go to extensions page (chrome://extensions)
+2. In chrome go to extensions page (`chrome://extensions`)
 3. Enable developer mode
 4. Load unpacked extension
 
